@@ -14,8 +14,16 @@ const firebaseConfig = {
   storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
-  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 };
+
+// Throw a clear error when environment variables are missing to avoid
+// confusing Firebase API key issues at runtime.
+if (!firebaseConfig.apiKey || firebaseConfig.apiKey === 'your_api_key') {
+  throw new Error(
+    'Firebase API key ausente ou inválida. Verifique o arquivo .env.'
+  );
+}
 
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);

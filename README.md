@@ -49,7 +49,9 @@ O projeto utiliza React + TypeScript com Vite e TailwindCSS, além dos serviços
 ## Execução
 
 Antes de rodar o projeto, copie o arquivo `.env.example` para `.env` e
-preencha com as credenciais do Firebase.
+substitua os valores de `your_api_key` e demais campos pelas credenciais reais
+do seu projeto Firebase. Sem uma chave de API válida, o login falhará com o
+erro `auth/api-key-not-valid`.
 
 1. Instale as dependências:
    ```bash
