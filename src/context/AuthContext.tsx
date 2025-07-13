@@ -41,7 +41,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setUser(currentUser);
       if (currentUser) {
         try {
-          const userRef = doc(db, 'users', currentUser.uid);
+          const userRef = doc(db, 'publicProfiles', currentUser.uid);
           const userSnap = await getDoc(userRef);
           if (userSnap.exists()) {
             setProfile(userSnap.data() as UserProfile);

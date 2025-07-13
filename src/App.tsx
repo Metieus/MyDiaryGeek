@@ -8,6 +8,7 @@ const Timeline = lazy(() => import('./components/Timeline'));
 const Statistics = lazy(() => import('./components/Statistics'));
 const Settings = lazy(() => import('./components/Settings'));
 const Profile = lazy(() => import('./components/Profile'));
+const Community = lazy(() => import('./components/Community'));
 import ErrorBoundary from './components/ErrorBoundary';
 import { Login } from './components/Login';
 import { getMedias } from './services/mediaService';
@@ -81,7 +82,7 @@ export interface UserSettings {
   defaultLibrarySort: string;
 }
 
-export type ActivePage = 'dashboard' | 'library' | 'reviews' | 'timeline' | 'statistics' | 'profile' | 'settings';
+export type ActivePage = 'dashboard' | 'library' | 'reviews' | 'timeline' | 'statistics' | 'profile' | 'settings' | 'community';
 
 function App() {
   const { user, loading } = useAuth();
@@ -167,6 +168,8 @@ function App() {
         return <Profile />;
       case 'settings':
         return <Settings />;
+      case 'community':
+        return <Community />;
       default:
         return <Dashboard />;
     }

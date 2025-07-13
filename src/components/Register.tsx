@@ -67,6 +67,12 @@ export const Register: React.FC<RegisterProps> = ({ onCancel }) => {
       // Gravar os dados no Firestore
       console.log('✍️ Gravando dados no Firestore...');
       await setDoc(doc(db, 'users', user.uid), userData);
+      await setDoc(doc(db, 'publicProfiles', user.uid), {
+        name: formData.apelido,
+        avatar: '',
+        bio: '',
+        favorites: { characters: [], games: [], movies: [] },
+      });
       console.log('🎉 Dados do usuário salvos com sucesso no Firestore!');
 
       // Deslogar o usuário após cadastro (opcional)

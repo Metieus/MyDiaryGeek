@@ -1,5 +1,6 @@
 import React from 'react';
 import { Clock, Star, TrendingUp, Calendar, Plus, BookOpen } from 'lucide-react';
+import NotificationBar from './NotificationBar';
 import { useAppContext } from '../context/AppContext';
 import { MediaItem, Status } from '../App';
 
@@ -70,6 +71,7 @@ const Dashboard: React.FC = () => {
           <p className="text-sm text-slate-400">{new Date().toLocaleDateString('pt-BR')}</p>
         </div>
       </div>
+      <NotificationBar />
 
       {/* Featured Content & Quick Stats */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">

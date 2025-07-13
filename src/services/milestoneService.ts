@@ -2,6 +2,7 @@ import type { Milestone } from '../App';
 import { getUserId, removeUndefinedFields } from './utils';
 import { database } from './database';
 import { storageClient } from './storageClient';
+import { notifyFollowers } from './notificationService';
 
 export async function getMilestones(): Promise<Milestone[]> {
   const uid = getUserId();
@@ -42,6 +43,7 @@ export async function addMilestone(data: AddMilestoneData): Promise<Milestone> {
       console.error('❌ Erro ao enviar imagem do marco', err);
     }
   }
+  await notifyFollowers({ type: 'milestone', message: `alcançou um novo marco` });
 
   return { ...toSave, id: docRef.id, image: imageUrl };
 }

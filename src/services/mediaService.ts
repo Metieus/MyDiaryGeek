@@ -2,6 +2,7 @@ import type { MediaItem } from '../App';
 import { getUserId, removeUndefinedFields } from './utils';
 import { database } from './database';
 import { storageClient } from './storageClient';
+import { notifyFollowers } from './notificationService';
 
 export async function getMedias(): Promise<MediaItem[]> {
   const uid = getUserId();
@@ -35,6 +36,7 @@ export async function addMedia(data: AddMediaData): Promise<MediaItem> {
       console.error('Erro ao fazer upload da imagem', err);
     }
   }
+  await notifyFollowers({ type: 'media', message: `adicionou ${rest.title}` });
 
   return { id: docRef.id, ...toSave, cover: coverUrl };
 }

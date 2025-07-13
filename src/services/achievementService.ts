@@ -1,5 +1,6 @@
 import { database } from './database';
 import { getUserId } from './utils';
+import { notifyFollowers } from './notificationService';
 import { UserAchievement, AchievementNode, AchievementProgress } from '../types/achievements';
 import { ACHIEVEMENTS_DATA } from '../data/achievementsData';
 import { MediaItem, Review, UserSettings } from '../App';
@@ -25,6 +26,7 @@ export async function unlockAchievement(achievementId: string): Promise<void> {
 
   await database.add(['users', uid, 'achievements'], userAchievement);
   console.log('🏆 Conquista desbloqueada:', achievement.title);
+  await notifyFollowers({ type: 'achievement', message: `alcançou ${achievement.title}` });
 }
 
 export function getAchievementsWithProgress(userAchievements: UserAchievement[]): AchievementNode[] {

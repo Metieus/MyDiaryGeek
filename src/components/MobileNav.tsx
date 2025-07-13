@@ -6,7 +6,8 @@ import {
   Clock,
   BarChart3,
   Settings,
-  User
+  User,
+  Users
 } from 'lucide-react';
 import { useAppContext } from '../context/AppContext';
 import { ActivePage } from '../App';
@@ -22,9 +23,10 @@ const navItems: NavItem[] = [
   { id: 'library', icon: <BookOpen size={20} />, label: 'Biblioteca' },
   { id: 'reviews', icon: <MessageSquare size={20} />, label: 'Resenhas' },
   { id: 'timeline', icon: <Clock size={20} />, label: 'Jornada' },
-  { id: 'statistics', icon: <BarChart3 size={20} />, label: 'Estat\u00edsticas' },
+  { id: 'statistics', icon: <BarChart3 size={20} />, label: 'Estatísticas' },
+  { id: 'community', icon: <Users size={20} />, label: 'Comunidade' },
   { id: 'profile', icon: <User size={20} />, label: 'Perfil' },
-  { id: 'settings', icon: <Settings size={20} />, label: 'Configura\u00e7\u00f5es' }
+  { id: 'settings', icon: <Settings size={20} />, label: 'Configurações' }
 ];
 
 export const MobileNav: React.FC = () => {

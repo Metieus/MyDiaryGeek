@@ -3,6 +3,7 @@ import type { UserSettings } from '../App';
 import { storageClient } from './storageClient';
 import { database } from './database';
 import { removeUndefinedFields } from './utils';
+import { savePublicProfile } from './profileService';
 
 function getUserId(): string {
   const uid = auth.currentUser?.uid;
@@ -20,6 +21,7 @@ export async function saveSettings(data: UserSettings): Promise<void> {
   const uid = getUserId();
   const cleaned = removeUndefinedFields(data);
   await database.set(['users', uid, 'settings', 'profile'], cleaned, { merge: true });
+  await savePublicProfile(cleaned as any);
 }
 
 export async function backupUserData(data: unknown): Promise<void> {

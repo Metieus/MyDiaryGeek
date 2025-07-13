@@ -2,6 +2,7 @@ import type { Review } from '../App';
 import { getUserId, removeUndefinedFields } from './utils';
 import { database } from './database';
 import { storageClient } from './storageClient';
+import { notifyFollowers } from './notificationService';
 
 export async function getReviews(): Promise<Review[]> {
   const uid = getUserId();
@@ -36,6 +37,7 @@ export async function addReview(data: AddReviewData): Promise<Review> {
       console.error('Erro ao enviar imagem da review', err);
     }
   }
+  await notifyFollowers({ type: 'review', message: `publicou uma nova resenha` });
 
   return { id: docRef.id, ...(toSave as Review) };
 }
